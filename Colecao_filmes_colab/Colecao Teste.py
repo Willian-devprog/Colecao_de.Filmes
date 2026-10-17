@@ -16,7 +16,7 @@ def gerenciar_filmes():
             titulo = input("Título do filme: ").strip()
 
 
-            filme_existe = any(f["titulo"].lower() == titulo.lower() for f in filmes) #Isso aqui serve para saber se o titulo do filme já está na lista, pedi ajuda ao chat pra identificar
+            filme_existe = any(f["titulo"].lower() == titulo.lower() for f in filmes) #Isso aqui serve para saber se o titulo do filme já está na lista
             if filme_existe:
                 print(f" Atenção: O filme '{titulo}' já consta na sua coleção!")
                 continue
@@ -66,13 +66,13 @@ def gerenciar_filmes():
 
             if criterio == "1":
                 filmes.sort(key=lambda x: x["titulo"].lower())
-                print("🔄 Filmes ordenados por Título com sucesso!")
+                print(" Filmes ordenados por Título com sucesso!")
             elif criterio == "2":
                 filmes.sort(key=lambda x: x["ano"])
-                print("🔄 Filmes ordenados por Ano com sucesso!")
+                print(" Filmes ordenados por Ano com sucesso!")
             elif criterio == "3":
                 filmes.sort(key=lambda x: x["nota"], reverse=True)
-                print("🔄 Filmes ordenados por Nota com sucesso!")
+                print(" Filmes ordenados por Nota com sucesso!")
             else:
                 print(" Opção de ordenação inválida.")
 
