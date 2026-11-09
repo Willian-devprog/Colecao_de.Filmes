@@ -58,5 +58,5 @@ Este projeto consiste em uma aplicação em **Python** desenvolvida para execuç
 O projeto armazena as informações em arquivos texto com separador `;` para garantir a persistência dos dados entre execuções:
    - `usuarios.csv`: Armazena os dados dos usuários cadastrados (`id;nome;login;senha`). 
    - `midias.csv`: Contém o acervo de filmes e séries (`id;titulo;tipo;genero;ano`).
-   - `avaliacoes.csv`: Registra o histórico de avaliações (`id_midia;id_usuario;nota;comentario`).
+   - `avaliacoes.csv`: Registra o histórico de avaliações (`id_midia;id_usuario;nota;comentario`)
   
