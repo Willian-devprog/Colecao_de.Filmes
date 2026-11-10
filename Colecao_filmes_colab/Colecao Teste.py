@@ -1,5 +1,24 @@
+import json
+from pathlib import Path
+
+Arquivo = Path("filmes.json")
+
+def carregar():
+    if not Arquivo.exists():
+        return []
+    try:
+        with open(Arquivo, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except json.JSONDecodeError:
+        print("Iniciando com lista vazia.")
+        return []
+
+def salvar(filmes):
+    with open(Arquivo, "w", encoding="utf-8") as f:
+        json.dump(filmes, f, ensure_ascii=False, indent=2)
+
 def gerenciar_filmes():
-    filmes = []  #aqui está a lista que vai sendo preenchida conforme os filmes vão sendo add
+    filmes = carregar()  #lista que vai sendo preenchida conforme os filmes vão sendo add
 
     while True:
 
@@ -7,9 +26,9 @@ def gerenciar_filmes():
         print("1. Adicionar novo filme")
         print("2. Ver lista de filmes")
         print("3. Ordenar filmes")
+        print("4. Sair")
 
-
-        opcao = input("\nEscolha uma opção (1-3): ").strip() #vai pedir para vc escolher uma opção para determinada ação
+        opcao = input("\nEscolha uma opção (1-4): ").strip() #vai pedir para vc escolher uma opção para determinada ação
 
         if opcao == "1":
             print("Adicione seu Próximo Novo Filme")
@@ -37,6 +56,7 @@ def gerenciar_filmes():
                     "nota": int(nota)
                 }
                 filmes.append(filme)
+                salvar(filmes)
                 print(f"Seu Filminho '{titulo}' foi adicionado com sucesso!")
             except ValueError:
                 print(" Erro: O ano deve ser um número inteiro e a nota um número válido!")
@@ -54,7 +74,7 @@ def gerenciar_filmes():
 
         elif opcao == "3":
             if not filmes: #Se não tiver filmes na lista para ordenar, mostrar esse texto
-                print("\n📭 Nenhum filme cadastrado para ordenar.")
+                print("\n Nenhum filme cadastrado para ordenar.")
                 continue
 
             print("Critérios de Ordenação ")
@@ -66,15 +86,25 @@ def gerenciar_filmes():
 
             if criterio == "1":
                 filmes.sort(key=lambda x: x["titulo"].lower())
+                salvar(filmes)
                 print(" Filmes ordenados por Título com sucesso!")
             elif criterio == "2":
                 filmes.sort(key=lambda x: x["ano"])
+                salvar(filmes)
                 print(" Filmes ordenados por Ano com sucesso!")
             elif criterio == "3":
                 filmes.sort(key=lambda x: x["nota"], reverse=True)
+                salvar(filmes)
                 print(" Filmes ordenados por Nota com sucesso!")
             else:
                 print(" Opção de ordenação inválida.")
+        
+        elif opcao == "4":
+            print("Até a próxima!")
+            break
+
+        else:
+            print(" Opção inválida. Escolha de 1 a 4.")
 
 
 
